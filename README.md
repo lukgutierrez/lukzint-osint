@@ -1,306 +1,270 @@
 # LUKZINT — OSINT Social Analyzer
 
-> Aplicación para análisis de **información pública** (OSINT) con arquitectura
-> limpia, análisis asistido por IA multi-proveedor y generación de informes
-> profesionales con verificación de fuentes.
+> **Plataforma Profesional de Inteligencia de Fuentes Abiertas (OSINT)** diseñada bajo principios de arquitectura limpia, con análisis asistido por IA multi-proveedor (con redundancia automática) y generación de informes de nivel judicial/corporativo con preservación rigurosa de evidencias.
 
-Desarrollado por **Luk Gutierrez** (`@LukGutierrez`) — Ingeniería de Software y
-recolección de inteligencia de fuentes abiertas (OSINT).
+Desarrollado por **Luk Gutierrez** (`@LukGutierrez`) — Ingeniería de Software y Recolección de Inteligencia.
 
 ---
 
-## Tabla de contenidos
+## Vista Previa de la Aplicación
 
-- [¿Qué es?](#qué-es)
-- [Características principales](#características-principales)
-- [Modelo y arquitectura](#modelo-y-arquitectura)
-- [Stack tecnológico](#stack-tecnológico)
-- [Instalación](#instalación)
-- [Configuración del análisis con IA](#configuración-del-análisis-con-ia)
-- [Casos de uso con ejemplos](#casos-de-uso-con-ejemplos)
-- [Ética y marco legal](#ética-y-marco-legal)
-- [Testing y calidad](#testing-y-calidad)
-- [Estructura del proyecto](#estructura-del-proyecto)
-- [Roadmap](#roadmap)
+### 1. Panel de Control de la Investigación
+El centro de mando de cada expediente, donde se gestionan las fuentes, la red de relaciones por nivel generacional y las acciones de análisis.
 
----
+![Panel de Control de la Investigación](./assets/detail_preview.png)
 
-## ¿Qué es?
+### 2. Módulo de Análisis con IA
+Estructura hallazgos desde texto público aportado (biografías, publicaciones, metadatos) asociándoles categoría, nivel de confianza y evidencia.
 
-**LUKZINT** es un analizador OSINT que centraliza la investigación de *personas,
-organizaciones o proyectos* a partir de lo que estas publican de forma pública.
-En lugar de esparcir apuntes en hojas, la app permite:
+![Módulo de Análisis con IA](./assets/ai_preview.png)
 
-1. Crear una **investigación** con objetivo claro.
-2. Registrar el **perfil objetivo** (datos, foto, ocupación, ubicación).
-3. Vincular sus **redes sociales** públicas.
-4. Analizar **URLs públicas** (GitHub, sitios web) extrayendo evidencias.
-5. Analizar con **IA** el contenido público de perfiles sociales (bio, posts).
-6. Construir un **árbol genealógico / red de relaciones** visual.
-7. Generar un **informe PDF** con fuentes, evidencias y limitaciones.
+### 3. Informe PDF de Inteligencia Generado
+Reporte estructurado final de nivel profesional/judicial con la cadena de fuentes, hallazgos, red de relaciones y limitaciones legales.
 
-> ⚠️ Trabaja únicamente con información pública y autorizada. No accede a
-> perfiles privados, no evita controles de acceso y no inventa datos.
+![Informe de Investigación PDF](./assets/report_preview.png)
 
 ---
 
-## Características principales
+## Tabla de Contenidos
 
-| Área | Descripción |
-| --- | --- |
-| **Investigaciones** | Crear, editar, eliminar y consultar expedientes OSINT con estado (borrador / en curso / completada). |
-| **Perfil objetivo** | Datos manuales de la persona: nombre, DNI, alias, ubicación, ocupación, notas y foto. |
-| **Análisis de URLs** | Analiza repositorios **GitHub** (vía API oficial) y **sitios web** (metadatos, OpenGraph, encabezados). |
-| **Análisis con IA** | Estructura hallazgos desde el contenido público que pegás: resumen + hallazgos con **categoría, confianza y evidencia**. |
-| **Multi-proveedor IA** | Soporta **Gemini, OpenRouter, Groq y Mistral AI** con **fallback automático**. |
-| **Red de relaciones** | Registro de familiares, parejas, amigos y colegas con foto y notas. |
-| **Árbol genealógico** | Vista visual por generaciones centrada en el perfil objetivo. |
-| **Informes PDF** | Reporte profesional con objetivo, fuentes, hallazgos, evidencias, relaciones y limitaciones. |
-| **Multiplataforma** | Flutter: Android, iOS, Windows, macOS y Linux. |
+1. [¿Qué es LUKZINT?](#qué-es-lukzint)
+2. [Usuarios Objetivo (¿Quiénes lo pueden usar?)](#usuarios-objetivo-quiénes-lo-pueden-usar)
+3. [Casos de Uso Avanzados](#casos-de-uso-avanzados)
+4. [Características Principales](#características-principales)
+5. [Modelo y Arquitectura (Ingeniería de Software)](#modelo-y-arquitectura-ingeniería-de-software)
+6. [Stack Tecnológico](#stack-tecnológico)
+7. [Estructura del Proyecto](#estructura-del-proyecto)
+8. [Instalación y Puesta en Marcha](#instalación-y-puesta-en-marcha)
+9. [Configuración del Análisis con IA](#configuración-del-análisis-con-ia)
+10. [Ética, Cumplimiento y Marco Legal](#ética-cumplimiento-y-marco-legal)
+11. [Testing y Calidad del Software](#testing-y-calidad-del-software)
+12. [Roadmap](#roadmap)
 
 ---
 
-## Modelo y arquitectura
+## ¿Qué es LUKZINT?
 
-Arquitectura limpia y modular con separación estricta de responsabilidades:
+**LUKZINT** es una aplicación de escritorio y móvil concebida para estructurar, auditar y documentar investigaciones digitales a partir de información de acceso público en Internet. 
+
+En lugar de depender de notas desorganizadas y capturas de pantalla aisladas, LUKZINT proporciona un **entorno unificado de trabajo offline-first** donde los datos se estructuran siguiendo una cadena de custodia digital: cada hallazgo (Finding) se asocia directamente a una fuente verificable (Source), garantizando la reproducibilidad y el rigor metodológico de la investigación.
+
+---
+
+## Usuarios Objetivo (¿Quiénes lo pueden usar?)
+
+* **Investigadores OSINT y Analistas de Inteligencia:** Profesionales que necesitan recopilar información de objetivos, estructurar evidencias cruzadas y exportar informes listos para presentación legal, judicial o corporativa.
+* **Periodistas de Investigación:** Herramienta clave para verificar identidades, rastrear conexiones de red de personajes de interés público y almacenar el histórico de fuentes digitales antes de su eventual borrado.
+* **Analistas de Ciberseguridad y CTI (Cyber Threat Intelligence):** Ideal para perfilar actores de amenazas, identificar vectores de ataque pasivos expuestos en la web pública (ej. repositorios con secretos expuestos) y documentar su huella digital.
+* **Auditores de Privacidad y Oficiales de Cumplimiento (Corporate Due Diligence):** Herramienta para evaluar el nivel de exposición pública de directivos de una empresa (mitigando riesgos de ingeniería social / Spear Phishing) o validar antecedentes de socios comerciales sobre fuentes públicas.
+
+---
+
+## Casos de Uso Avanzados
+
+### Caso de Uso 1: Auditoría de Exposición de Información (Executive Profiling)
+* **Objetivo:** Determinar qué datos sensibles de un directivo están expuestos públicamente en internet para entrenar campañas de concienciación sobre phishing.
+* **Flujo de Trabajo:**
+  1. El auditor crea una investigación llamada *"Auditoría de Exposición - CEO"*.
+  2. Utiliza el **Analizador de URLs** para escanear el sitio web corporativo y su perfil de GitHub público.
+  3. El sistema extrae metadatos clave (correos electrónicos declarados en commits, claves expuestas, servidores referenciados).
+  4. Utiliza el **Análisis con IA** ingresando textos públicos extraídos de blogs o discursos para detectar menciones de tecnologías internas o rutinas de trabajo.
+  5. Mapea la **Red de Relaciones** del directivo para determinar si sus familiares directos exponen indirectamente información laboral.
+  6. Exporta el **Informe PDF** final con las advertencias y limitaciones pertinentes.
+
+### Caso de Uso 2: Debida Diligencia Corporativa (Due Diligence)
+* **Objetivo:** Verificar la trayectoria pública e historial técnico de un proveedor o candidato técnico antes de otorgarle acceso a sistemas críticos.
+* **Flujo de Trabajo:**
+  1. Se crea la investigación de debida diligencia.
+  2. Se introduce el perfil de GitHub del candidato.
+  3. La app analiza automáticamente a través de la API oficial el historial del usuario, repositorios públicos y metadatos de aportaciones para verificar la autenticidad y antigüedad de su portafolio.
+  4. Los hallazgos se guardan de forma inmutable asociados a las URLs originales de GitHub.
+
+### Caso de Uso 3: Análisis de Vínculos y Redes Sociales (Social Network Analysis)
+* **Objetivo:** Reconstruir la red de conexiones cercanas de un perfil investigado basándose estrictamente en interacciones o menciones públicas de familiares y colaboradores.
+* **Flujo de Trabajo:**
+  1. Se definen las características del **Perfil Objetivo** (alias, cargo, foto).
+  2. Se añaden las personas de su entorno indicando el tipo de vínculo (`brother`, `spouse`, `colleague`, etc.).
+  3. El sistema categoriza las relaciones en base a su jerarquía generacional (`generation`).
+  4. El analista visualiza la red organizada por generaciones para identificar intermediarios o perfiles alternativos que pudieran estar filtrando información relevante.
+
+---
+
+## Características Principales
+
+| Módulo | Descripción Técnica | Implementación en LUKZINT |
+| --- | --- | --- |
+| **Gestión de Expedientes** | Estructuración de investigaciones con metadatos de auditoría. | Estados: Borrador, En progreso y Completada. Control de fechas de creación y actualización. |
+| **Perfil Objetivo** | Consolidación de datos principales de la persona o entidad bajo estudio. | Nombre completo, DNI/ID, alias, ubicación, ocupación, notas estructuradas y almacenamiento de fotografía. |
+| **Scraping y Consumo de APIs** | Extracción automatizada de información de fuentes web públicas. | Conexión directa a la API oficial de **GitHub** y parser genérico de metadatos HTML (OpenGraph, Headers) sin intermediarios. |
+| **Análisis de Contenido con IA** | Procesamiento de lenguaje natural sobre biografías, publicaciones y textos públicos. | Extracción automatizada de hallazgos estructurados (categoría, descripción, confianza y evidencia textual). |
+| **Redundancia de IA (Failover)** | Tolerancia a fallas y resiliencia en la disponibilidad de APIs de LLMs. | Sistema multi-proveedor (**Gemini, OpenRouter, Groq, Mistral**) con cascada de fallback automático ante caídas o límites excedidos. |
+| **Mapeo de Relaciones** | Registro estructurado de la red social inmediata (genealogía, amigos, colegas). | Clasificación por grupos y generaciones relativas al objetivo. Fotos almacenadas de forma local en formato base64. |
+| **Generación de Entregables** | Creación de informes ejecutivos profesionales listos para auditorías externas. | Motor de reporte PDF integrado. Preserva inalteradas las fuentes originales de información y las limitaciones del análisis. |
+| **Seguridad de Datos** | Almacenamiento local seguro de la base de conocimiento de la investigación. | Base de datos offline-first en archivos JSON. Ningún dato de las investigaciones se transmite a servidores de terceros (excepto llamadas directas a las APIs de IA / Scraping). |
+
+---
+
+## Modelo y Arquitectura (Ingeniería de Software)
+
+LUKZINT está construido bajo los lineamientos de **Clean Architecture (Arquitectura Limpia)**, garantizando que el núcleo de negocio sea independiente de las interfaces de usuario, bases de datos y servicios externos.
 
 ```
-┌──────────────── Presentation ────────────────┐
-│  Screens · Widgets · Controllers (ChangeNotifier) │
-└──────────────────────┬────────────────────────┘
-                       │ usecases
-┌──────────────────── Domain ──────────────────┐
-│  Entities · Repositories (interfaces) · Usecases │
-└──────────────────────┬────────────────────────┘
-                       │ repositories (impl)
-┌──────────────────────▼────────────────────────┐
-│                      Data                          │
-│  Datasources: Gemini / OpenAI-compatible (Groq ·  │
-│  OpenRouter · Mistral) · GitHub API · WebScraper · │
-│  LocalStorage / JSON                              │
-└──────────────────────┬────────────────────────┘
-                       │
-┌──────────────────── Core ────────────────────┐
-│  Network · Settings · Storage · Errors · Theme │
-└──────────────────────────────────────────────┘
+┌──────────────── Presentation Layer ────────────────┐
+│  Screens · Widgets · Controllers (ChangeNotifier)  │
+└─────────────────────────┬──────────────────────────┘
+                          │ Utiliza
+┌──────────────────── Domain Layer ──────────────────┐
+│  Entities · Repositories (Contracts) · Usecases   │
+└─────────────────────────┬──────────────────────────┘
+                          │ Implementa / Extiende
+┌────────────────────── Data Layer ──────────────────┐
+│  Models · Repositories Impl · Datasources (APIs,  │
+│  WebScraper, JSON Storage)                         │
+└─────────────────────────┬──────────────────────────┘
+                          │ Soporta a todas las capas
+┌────────────────────── Core Layer ──────────────────┐
+│  Network Client · Settings · Storage · Theme · Utils│
+└────────────────────────────────────────────────────┘
 ```
 
-**Principios aplicados:**
-
-- **SOLID** y *Clean Code*
-- **Separación de Concerns** (la UI no contiene lógica de negocio)
-- **Inversión de Dependencias** (inyección manual, sin frameworks)
-- Código **testeable** y mantenible; se evita la sobreingeniería
-
-**Resiliencia de IA (fallback):** el análisis intenta primero el proveedor
-principal configurado. Si falla (falta de clave, límite alcanzado, error de red
-o respuesta inválida) y el *fallback automático* está activado, prueba
-automáticamente con los demás proveedores configurados.
+### Decisiones de Diseño Arquitectónico (ADRs)
+* **ADR-001 — Framework:** Uso exclusivo de **Flutter y Dart** para asegurar portabilidad nativa y rendimiento multiplataforma óptimo con una única base de código.
+* **ADR-002 — Arquitectura:** Separación estricta en 4 capas (`Presentation`, `Domain`, `Data`, `Core`). La interfaz de usuario nunca contiene lógica de negocio; esta se delega a los **Casos de Uso** independientes.
+* **ADR-003 — Fuentes:** Trabajo limitado de forma estricta a información pública mediante APIs oficiales y mecanismos estándar de scraping, velando por la legalidad de los datos.
+* **ADR-004 — Dependencias:** Minimización estricta de librerías externas. La inyección de dependencias se realiza de manera manual en el ensamblaje raíz ([main.dart](file:///c:/Users/LukGutierrez/Desktop/APP%20OSINT/lib/main.dart)) reduciendo vectores de ataque en la cadena de suministro de software.
 
 ---
 
-## Stack tecnológico
+## Stack Tecnológico
 
-| Componente | Tecnología |
-| --- | --- |
-| Framework | Flutter / Dart |
-| Estado | `ChangeNotifier` + inyección manual |
-| Red | `http` (cliente nativo multiplataforma) |
-| Persistencia | Archivos JSON locales (offline-first) |
-| Informes | `pdf` + `printing` + `html` |
-| Imágenes | `image_picker` |
-| IA | Gemini API + APIs OpenAI-compatibles (Groq, OpenRouter, Mistral) |
-
-Dependencias externas mínimas (regla del proyecto).
+* **Framework Base:** Flutter 3.x / Dart 3.x (Versiones estables)
+* **Gestión de Estado:** `ChangeNotifier` + Patron Controller con inyección manual de dependencias.
+* **Persistencia:** Repositorio JSON local (`JsonStorage` basado en `path_provider`), garantizando privacidad absoluta de las investigaciones.
+* **Cliente HTTP:** `HttpNativeClient` propio sobre el cliente nativo de Dart, evitando dependencias externas complejas.
+* **Generación de Reportes:** `package:pdf` para la maquetación y generación nativa de documentos y `package:printing` para visualización previa y soporte de impresión.
+* **Proveedores de Inteligencia Artificial:** Integración nativa con la API de Google Gemini y clientes compatibles con OpenAI para Groq, OpenRouter y Mistral AI.
 
 ---
 
-## Instalación
+## Estructura del Proyecto
 
-Requisitos: Flutter estable reciente y Dart.
-
-```bash
-# 1. Clonar el repositorio
-git clone <url-del-repositorio>
-cd osint_social_analyzer
-
-# 2. Instalar dependencias
-flutter pub get
-
-# 3. Ejecutar análisis estático y tests
-flutter analyze
-flutter test
-
-# 4. Correr la app (desktop, web, móvil)
-flutter run -d windows   # o -d android, -d chrome, etc.
-```
-
-La aplicación funciona **offline** para almacenar investigaciones. Solo se
-requiere conexión a internet para analizar URLs, consultar la API de GitHub o
-usar el análisis con IA.
-
----
-
-## Configuración del análisis con IA
-
-La aplicación puede usar **cuatro proveedores gratuitos** (sin requerir tarjeta
-de crédito para sus planes básicos). En **Ajustes** elegís el *proveedor
-principal* y podés cargar la clave de cada uno:
-
-| Proveedor | Cómo obtener la clave |
-| --- | --- |
-| **Google Gemini** | https://aistudio.google.com → *Get API key* → *Create API key* |
-| **OpenRouter** | https://openrouter.ai/keys → modelos `:free` sin tarjeta |
-| **Groq** | https://console.groq.com/keys → plan gratuito, muy rápido (`llama-3.3-70b`) |
-| **Mistral AI** | https://console.mistral.ai → *API keys* → modo gratuito |
-
-**Consejos:**
-
-- Las claves se guardan **solo en tu dispositivo** (archivo JSON local).
-- Con un solo proveedor configurado ya funciona; con más, activás la **resiliencia**.
-- Si un proveedor falla (límite diario, caída), el fallback prueba el siguiente automáticamente.
-
----
-
-## Casos de uso con ejemplos
-
-### 1. Verificación de identidad de un perfil público en GitHub
-
-> **Objetivo:** confirmar si un perfil de GitHub pertenece a una persona y qué
-> información declara públicamente.
-
-1. Creá la investigación "Verificación de perfil @jperez".
-2. Andá a **Analizador** y pegá `https://github.com/jperez`.
-3. LUKZINT consulta la API oficial y registra: login, nombre público, bio,
-   compañía, ubicación, web, redes declaradas, repos, seguidores y antigüedad.
-4. Cada hallazgo queda con su **evidencia** (campo de la API) y **confianza**.
-5. Opcional: generá el **PDF** para compartir el informe con sus fuentes.
-
-### 2. Análisis de contenido público de una red social con IA
-
-> **Objetivo:** estructurar hallazgos de la bio y publicaciones públicas de un
-> perfil de Instagram o TikTok **sin acceder a nada privado**.
-
-1. Andá a **Análisis con IA** (dentro de la investigación o desde el flujo).
-2. Elegí la plataforma y pegá el **texto literal** del perfil (bio, posts).
-3. La IA devuelve un resumen objetivo y hallazgos categorizados con confianza
-   y evidencia. Se muestra **qué proveedor** realizó el análisis.
-4. El resultado se guarda como fuente vinculada a la investigación.
-
-> **Diferencia clave:** la IA solo analiza lo que *vos* aportás en el mensaje.
-> No hay scraping de perfiles privados ni inicio de sesión.
-
-### 3. Construcción de un árbol genealógico / red de relaciones
-
-> **Objetivo:** organizar la red social de la persona objetivo (familia,
-> pareja, amigos, colegas) con información pública.
-
-1. En la investigación, completá el **perfil objetivo** (con foto).
-2. Agregá cada persona con su **vínculo** (padre, madre, abuelo/a, tío/a,
-   hermano/a, primo/a, cónyuge, pareja, ex pareja, hijo/a, sobrino/a, nieto/a,
-   amigo/a, colega…).
-3. Activa **"Ver árbol genealógico"**: el perfil objetivo queda en el centro,
-   ascendientes arriba y descendientes abajo, con ramas visuales.
-4. La red también se incluye en el informe PDF.
-
-### 4. Informe profesional con evidencias
-
-> **Objetivo:** entregar un reporte ordenado y auditable.
-
-1. Reuní fuentes y hallazgos en una investigación.
-2. Presioná **Generar PDF**.
-3. El PDF incluye: título, fecha, objetivo, perfil, redes, hallazgos con
-   evidencias y URLs de origen, red de relaciones y **limitaciones del análisis**.
-
----
-
-## Ética y marco legal
-
-Este proyecto se desarrolla bajo límites estrictos:
-
-- ✅ Solo información **pública y legalmente accesible**.
-- ✅ Datos obtenidos mediante **fuentes autorizadas** (APIs oficiales, metadatos públicos).
-- ✅ Respeta los términos de servicio de cada plataforma.
-- ❌ **No accede** a perfiles privados, no salta controles de acceso ni evita autenticación.
-- ❌ **No scraping** donde esté prohibido.
-- ❌ No presenta **inferencias como hechos**; cada dato conserva su fuente y confianza.
-- ❌ No genera **diagnósticos psicológicos** ni infiere **atributos sensibles**.
-
-**Uso responsable:** el análisis OSINT es para fines legítimos (periodismo,
-seguridad, verificación de identidad, investigación legal). El uso indebido de
-la información puede ser ilegal. Usá siempre de forma ética y conforme a la
-ley aplicable.
-
----
-
-## Testing y calidad
-
-Verificación obligatoria antes de dar por terminada una funcionalidad:
-
-```bash
-flutter analyze
-flutter test
-```
-
-Suite de tests existente (10+ archivos, 30+ casos):
-
-| Área | Cubrimiento |
-| --- | --- |
-| Datasources y repositorios | Web scraping, API de GitHub, análisis de URLs |
-| IA multi-proveedor | Configuración, parser JSON del protocolo, fallback automático |
-| Modelos y serialización | Persistencia JSON de investigaciones |
-| Reportes | Generación de PDF válido y con relaciones |
-| Validadores | URLs, GitHub, casos de uso |
-| Widgets | Dashboard y pantalla de detalle (desktop angosto y ancho) |
-
----
-
-## Estructura del proyecto
+La estructura de carpetas refleja fielmente la separación de responsabilidades y la arquitectura limpia:
 
 ```
 lib/
-├── core/            # Network, settings, storage, theme, errors, utils
-│   └── settings/    # AiProvider (Gemini · OpenRouter · Groq · Mistral)
-├── data/
-│   ├── datasources/
-│   │   ├── gemini_ai_datasource.dart
-│   │   ├── openai_compatible_ai_datasource.dart   # Groq/OpenRouter/Mistral
-│   │   ├── failover_ai_datasource.dart            # fallback automático
-│   │   ├── social_ai_protocol.dart                # prompt + parser JSON
-│   │   ├── github_api_datasource.dart
-│   │   ├── web_scraper_datasource.dart
-│   │   └── local_storage_datasource.dart
-│   ├── models/      # serialización JSON
-│   └── repositories/# implementaciones
-├── domain/
-│   ├── entities/    # investigación, hallazgos, fuentes, relaciones, perfil
-│   ├── repositories/# contratos (interfaces)
-│   └── usecases/    # casos de uso
-├── presentation/
-│   ├── controllers/ # ChangeNotifier
-│   ├── screens/     # dashboard, analizador, detalle, IA, ajustes
-│   └── widgets/     # tarjeta de fuente, hallazgo, árbol genealógico, etc.
-└── main.dart        # composición raíz (inyección de dependencias)
-specs/               # especificación del producto
-test/                # tests unitarios y de widgets
+├── core/                  # Componentes transversales del sistema
+│   ├── constants/         # Branding y constantes globales
+│   ├── errors/            # Manejo unificado de excepciones OSINT/Red
+│   ├── network/           # Cliente HTTP nativo optimizado
+│   ├── settings/          # Gestión de configuración de proveedores y APIs
+│   ├── storage/           # Implementación del almacenamiento en disco (JSON)
+│   ├── theme/             # Paleta de diseño (Dark Theme premium)
+│   └── utils/             # Funciones de ayuda (Generación de IDs, validadores)
+├── domain/                # Núcleo del negocio (Independiente de frameworks)
+│   ├── entities/          # Estructuras de datos (Investigation, Source, Finding, etc.)
+│   ├── repositories/      # Interfaces de acceso a datos e informes
+│   └── usecases/          # Casos de uso de negocio (AnalyzeUrl, GeneratePdf, etc.)
+├── data/                  # Implementación de detalles y llamadas externas
+│   ├── datasources/       # Clientes de APIs (GitHub, Scraper, Gemini, OpenAI)
+│   ├── models/            # DTOs y serialización/deserialización JSON
+│   └── repositories/      # Implementaciones concretas de los repositorios del dominio
+├── presentation/          # Capa de Interfaz de Usuario
+│   ├── controllers/       # Controladores de pantalla mediante ChangeNotifier
+│   ├── screens/           # Pantallas de la aplicación (Dashboard, Detail, AI, Settings)
+│   └── widgets/           # Componentes UI reutilizables
+└── main.dart              # Punto de entrada y ensamblaje (Inyección de dependencias)
 ```
+
+---
+
+## Instalación y Puesta en Marcha
+
+### Requisitos Previos
+* Tener instalado el SDK de Flutter (versión estable).
+* Disponer de conexión a internet para el análisis inicial de URLs y el uso de los motores de IA.
+
+### Pasos para Ejecutar en Entorno de Desarrollo
+```bash
+# 1. Clonar el repositorio del proyecto
+git clone <url-del-repositorio>
+cd app_osint
+
+# 2. Obtener las dependencias del pubspec
+flutter pub get
+
+# 3. Validar el estado del código con el linter y analizador
+flutter analyze
+
+# 4. Ejecutar la suite completa de pruebas unitarias
+flutter test
+
+# 5. Compilar y lanzar la aplicación (ejemplo en Windows)
+flutter run -d windows
+```
+
+---
+
+## Configuración del Análisis con IA
+
+Para habilitar la estructuración inteligente de evidencias en la sección **Análisis con IA**, accede a la pantalla de **Ajustes** dentro de la app y configura las claves de los proveedores que desees utilizar:
+
+| Proveedor | Modelo Recomendado | Panel de Control de Claves |
+| --- | --- | --- |
+| **Google Gemini** | `gemini-2.5-flash` / `gemini-1.5-flash` | [Google AI Studio](https://aistudio.google.com/) |
+| **OpenRouter** | Modelos gratuitos (`:free`) | [OpenRouter Keys](https://openrouter.ai/keys) |
+| **Groq** | `llama-3.3-70b-versatile` | [Groq Console](https://console.groq.com/keys) |
+| **Mistral AI** | `mistral-small-latest` | [Mistral Console](https://console.mistral.ai/) |
+
+### Mecanismo de Tolerancia a Fallos (Failover Logic)
+LUKZINT cuenta con un algoritmo de resiliencia automatizado:
+1. Envía la solicitud al **proveedor principal** seleccionado.
+2. Si la API devuelve un error de cuota excedida, error de red, clave inválida o respuesta mal estructurada, la aplicación intercepta el error.
+3. Si el *Fallback Automático* está encendido, el sistema itera sobre el resto de los proveedores alternativos configurados hasta obtener un análisis exitoso.
+4. En la interfaz se notifica con absoluta claridad **qué proveedor de IA procesó con éxito la solicitud**, guardando dicha información en los metadatos de la fuente.
+
+---
+
+## Ética, Cumplimiento y Marco Legal
+
+LUKZINT es una herramienta defensiva y de análisis pasivo de fuentes abiertas. La arquitectura de la aplicación impone límites técnicos rigurosos para garantizar que su uso sea ético y conforme a los marcos legales internacionales (como el RGPD y normativas locales de privacidad):
+
+* **Acceso Autorizado:** La aplicación no incluye funciones de evasión de autenticación, suplantación de identidad (spoofing) o bypass de paywalls/firewalls. Solo consume información pública o provista explícitamente por el analista.
+* **Scraping Ético:** Se respetan los archivos `robots.txt` y los límites de cuota de las APIs de terceros para evitar causar denegaciones de servicio (DoS) involuntarias en los sitios investigados.
+* **Separación de Juicio:** El sistema de IA asiste en la estructuración de textos, pero es responsabilidad del investigador catalogar la veracidad del hallazgo.
+* **No Intrusión:** LUKZINT prohíbe técnicamente el perfilamiento psicométrico invasivo o la deducción automática de datos de carácter sensible (orientación, salud, religión) sin sustento documental de fuentes públicas.
+
+---
+
+## Testing y Calidad del Software
+
+El proyecto cuenta con una sólida suite de pruebas automáticas que valida el correcto funcionamiento de cada componente bajo condiciones críticas:
+
+```bash
+# Ejecutar los tests unitarios y de integración de widgets
+flutter test
+```
+
+La suite cubre los siguientes aspectos críticos:
+* **Pruebas de Redundancia de IA:** Simula la desconexión de APIs y valida la correcta activación en cadena de los proveedores secundarios en [ai_multi_provider_test.dart](file:///c:/Users/LukGutierrez/Desktop/APP%20OSINT/test/ai_multi_provider_test.dart).
+* **Validación de Protocolo JSON:** Garantiza que las respuestas desestructuradas de los LLMs sean parseadas con tolerancia a errores y convertidas a modelos de dominio inmutables.
+* **Generación de Reportes:** Asegura la compilación limpia del reporte PDF, incluso ante expedientes con datos vacíos o imágenes en base64 corruptas en [pdf_report_generator_test.dart](file:///c:/Users/LukGutierrez/Desktop/APP%20OSINT/test/pdf_report_generator_test.dart).
+* **Diseño UI Adaptativo (Responsive):** Testeo de widgets bajo dimensiones extremas (pantallas angostas de móviles y pantallas de escritorio anchas) en [detail_screen_test.dart](file:///c:/Users/LukGutierrez/Desktop/APP%20OSINT/test/detail_screen_test.dart) y [social_ai_screen_test.dart](file:///c:/Users/LukGutierrez/Desktop/APP%20OSINT/test/social_ai_screen_test.dart).
 
 ---
 
 ## Roadmap
 
-- [x] Investigaciones, perfil objetivo y fuentes.
-- [x] Análisis de URLs (GitHub + web).
-- [x] Análisis con IA multi-proveedor con fallback.
-- [x] Árbol genealógico visual.
-- [x] Informes PDF con evidencias.
-- [ ] Exportación de informes en formato HTML.
-- [ ] Análisis de hashtags y trending topics públicos.
-- [ ] Soporte de más proveedores gratuitos (Cerebras, SambaNova).
-- [ ] Vista comparativa de fuentes duplicadas.
-- [ ] Exportar/importar expedientes (respaldo).
+- [x] Gestión básica de Investigaciones, Objetivos y Fuentes.
+- [x] Conexión nativa con GitHub API y Web Scraper.
+- [x] Motor de Análisis por Inteligencia Artificial multi-proveedor con redundancia.
+- [x] Estructuración de Red de Relaciones y cálculo de generaciones.
+- [x] Exportación de Reportes Ejecutivos en PDF.
+- [ ] **Generación y exportación de reportes en formato HTML interactivo.** *(Siguiente Feature)*
+- [ ] Visualización gráfica dinámica interactiva (vista de grafo de nodos).
+- [ ] Integración con la Wayback Machine (Internet Archive API) para enlaces caídos.
+- [ ] Encriptación simétrica local de las bases de datos de investigaciones en disco.
+- [ ] Exportación de expedientes en paquetes comprimidos firmados para intercambio seguro entre analistas.
 
 ---
 
-© Luk Gutierrez — Proyecto personal de Ingeniería de Software y OSINT.
-Usá responsablemente.
+*Desarrollado bajo estándares profesionales de Ingeniería de Software.* **Usa esta herramienta con responsabilidad y ética.**
