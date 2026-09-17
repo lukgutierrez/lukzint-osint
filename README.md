@@ -2,7 +2,7 @@
 
 > **Plataforma Profesional de Inteligencia de Fuentes Abiertas (OSINT)** diseñada bajo principios de arquitectura limpia, con análisis asistido por IA multi-proveedor (con redundancia automática) y generación de informes de nivel judicial/corporativo con preservación rigurosa de evidencias.
 
-Desarrollado por **Luk Gutierrez** (`@LukGutierrez`) — Ingeniería de Software y Recolección de Inteligencia.
+Desarrollado por **Luciano Gutierrez** ([@lukgtz](https://github.com/lukgutierrez)) — *Software Engineer & OSINT Researcher*.
 
 ---
 
@@ -39,6 +39,7 @@ Reporte estructurado final de nivel profesional/judicial con la cadena de fuente
 10. [Ética, Cumplimiento y Marco Legal](#ética-cumplimiento-y-marco-legal)
 11. [Testing y Calidad del Software](#testing-y-calidad-del-software)
 12. [Roadmap](#roadmap)
+13. [Autor y Contacto](#autor-y-contacto)
 
 ---
 
@@ -264,6 +265,17 @@ La suite cubre los siguientes aspectos críticos:
 - [ ] Integración con la Wayback Machine (Internet Archive API) para enlaces caídos.
 - [ ] Encriptación simétrica local de las bases de datos de investigaciones en disco.
 - [ ] Exportación de expedientes en paquetes comprimidos firmados para intercambio seguro entre analistas.
+
+---
+ 
+## Autor y Contacto
+
+**Luciano Gutierrez** (`@lukgtz`)  
+*Software Engineer & OSINT Researcher*
+
+* 💼 **LinkedIn:** [linkedin.com/in/lucianogutierrezlgtz](https://www.linkedin.com/in/lucianogutierrezlgtz/)
+* 💻 **GitHub:** [github.com/lukgutierrez/lukzint-osint](https://github.com/lukgutierrez/lukzint-osint)
+* ✉️ **Correo Electrónico:** [lucianogutierrezlgtz@gmail.com](mailto:lucianogutierrezlgtz@gmail.com)
 
 ---
 

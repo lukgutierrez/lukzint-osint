@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/branding.dart';
 import '../../core/settings/ai_provider.dart';
 import '../../core/theme/app_theme.dart';
 import '../controllers/investigation_controller.dart';
+import '../widgets/about_developer_dialog.dart';
 
 /// Pantalla de ajustes: configuración del proveedor de IA, claves y
 /// fallback automático entre proveedores gratuitos.
@@ -110,6 +112,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       const SizedBox(height: 14),
                     ],
+                    const SizedBox(height: 16),
+                    _buildAboutSection(context),
                   ],
                 );
               },
@@ -188,6 +192,100 @@ class _SettingsScreenState extends State<SettingsScreen> {
           activeThumbColor: AppColors.primary,
           tileColor: Colors.transparent,
         ),
+      ),
+    );
+  }
+
+  Widget _buildAboutSection(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.shield_outlined,
+                  color: AppColors.primary,
+                  size: 20,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        AppBranding.appName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.text,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        'v${AppBranding.appVersion}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    AppBranding.tagline,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppColors.textMuted,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          const Divider(color: AppColors.border),
+          const SizedBox(height: 12),
+          Text(
+            'Desarrollado por ${AppBranding.developerName} (${AppBranding.developerProfile})',
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.text,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            AppBranding.developerRole,
+            style: const TextStyle(
+              fontSize: 11,
+              color: AppColors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 14),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: () => AboutDeveloperDialog.show(context),
+              icon: const Icon(Icons.info_outline, size: 16),
+              label: const Text('Ver información y enlaces profesionales'),
+            ),
+          ),
+        ],
       ),
     );
   }

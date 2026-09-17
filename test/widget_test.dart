@@ -18,6 +18,7 @@ import 'package:osint_social_analyzer/domain/usecases/create_investigation.dart'
 import 'package:osint_social_analyzer/domain/usecases/generate_pdf.dart';
 import 'package:osint_social_analyzer/main.dart';
 import 'package:osint_social_analyzer/presentation/controllers/investigation_controller.dart';
+import 'package:osint_social_analyzer/presentation/screens/dashboard_screen.dart';
 
 class _MemoryInvestigationRepository implements InvestigationRepository {
   final Map<String, Investigation> store = {};
@@ -131,7 +132,12 @@ void main() {
   testWidgets('el dashboard se renderiza correctamente', (tester) async {
     final controller = await _buildController([]);
 
-    await tester.pumpWidget(OsintApp(controller: controller));
+    await tester.pumpWidget(
+      OsintApp(
+        controller: controller,
+        home: DashboardScreen(controller: controller),
+      ),
+    );
     await tester.pumpAndSettle();
 
     expect(find.text('LUKZINT'), findsOneWidget);
@@ -143,7 +149,12 @@ void main() {
       (tester) async {
     final controller = await _buildController([]);
 
-    await tester.pumpWidget(OsintApp(controller: controller));
+    await tester.pumpWidget(
+      OsintApp(
+        controller: controller,
+        home: DashboardScreen(controller: controller),
+      ),
+    );
     await tester.pumpAndSettle();
 
     expect(find.text('Aún no hay investigaciones'), findsOneWidget);
@@ -154,7 +165,12 @@ void main() {
       (tester) async {
     final controller = await _buildController([_sampleInvestigation()]);
 
-    await tester.pumpWidget(OsintApp(controller: controller));
+    await tester.pumpWidget(
+      OsintApp(
+        controller: controller,
+        home: DashboardScreen(controller: controller),
+      ),
+    );
     await tester.pumpAndSettle();
 
     expect(find.text('Análisis de ejemplo'), findsOneWidget);

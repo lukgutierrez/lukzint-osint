@@ -7,6 +7,7 @@ import '../controllers/investigation_controller.dart';
 import '../screens/analyzer_screen.dart';
 import '../screens/investigation_detail_screen.dart';
 import '../screens/settings_screen.dart';
+import '../widgets/about_developer_dialog.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/status_badge.dart';
 
@@ -142,11 +143,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Expanded(child: _buildList(context)),
                           const SizedBox(height: 16),
                           Center(
-                            child: Text(
-                              AppBranding.watermark,
-                              style: const TextStyle(
-                                fontSize: 11,
-                                color: AppColors.textMuted,
+                            child: Tooltip(
+                              message: 'Ver información del desarrollador y contacto',
+                              child: InkWell(
+                                onTap: () => AboutDeveloperDialog.show(context),
+                                borderRadius: BorderRadius.circular(8),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 6,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(
+                                        Icons.verified_user_outlined,
+                                        size: 13,
+                                        color: AppColors.primary,
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        AppBranding.watermark,
+                                        style: const TextStyle(
+                                          fontSize: 11,
+                                          color: AppColors.textMuted,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),

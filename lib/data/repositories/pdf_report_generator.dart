@@ -34,9 +34,15 @@ class PdfReportGenerator implements ReportGenerator {
           child: pw.Row(
             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
             children: [
-              pw.Text(
-                AppBranding.watermark,
-                style: const pw.TextStyle(fontSize: 7, color: PdfColors.grey600),
+              pw.UrlLink(
+                destination: AppBranding.githubUrl,
+                child: pw.Text(
+                  AppBranding.watermark,
+                  style: const pw.TextStyle(
+                    fontSize: 7,
+                    color: PdfColors.grey600,
+                  ),
+                ),
               ),
               pw.Text(
                 'Página ${context.pageNumber} de ${context.pagesCount}',

@@ -28,7 +28,7 @@ import 'domain/usecases/analyze_url.dart';
 import 'domain/usecases/create_investigation.dart';
 import 'domain/usecases/generate_pdf.dart';
 import 'presentation/controllers/investigation_controller.dart';
-import 'presentation/screens/dashboard_screen.dart';
+import 'presentation/screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -106,8 +106,13 @@ AiDatasource _buildAiDatasource(SettingsDatasource settingsDatasource) {
 /// Widget raíz de la aplicación.
 class OsintApp extends StatelessWidget {
   final InvestigationController controller;
+  final Widget? home;
 
-  const OsintApp({super.key, required this.controller});
+  const OsintApp({
+    super.key,
+    required this.controller,
+    this.home,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +120,7 @@ class OsintApp extends StatelessWidget {
       title: AppBranding.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark(),
-      home: DashboardScreen(controller: controller),
+      home: home ?? SplashScreen(controller: controller),
     );
   }
 }
